@@ -4,17 +4,27 @@
 
 using namespace std;
 
-string randDNA(int seed, string letters, int length)
+string randDNA(int seed, string letters, int len)
 {
-	std::random_device rd;
-	std::mt19937 eng1(rd());
-	std::uniform_int_distribution<int> dist(0 ,99);
 	
-	string rand;
+	mt19937 eng1(seed);
+	
+	
+	string rand = "";
+	
+	int min(0);
+	int max = letters.length() -1;
+	
+	uniform_int_distribution<> uniform(min, max);
+	
 
-
-	for(int i=0; i<length; i++)
-		cout<<dist(eng1)<<" ";
+	for(int i = 0; i < len; i++)
+		rand = rand + letters.at(uniform(eng1));
+		
+	if(letters == "")
+	{
+		rand= "";
+	}
 		
 	return rand;
 	
